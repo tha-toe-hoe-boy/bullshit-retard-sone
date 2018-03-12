@@ -228,6 +228,7 @@ våpenene fungerer ikke etter jeg har lagt til sprite for bulleten.
 zombienen vil ikke følge etter deg på starten. den vil stoppe først. også vil den bare gå til den faller av banen. den vil følge etter deg etter en stund.
 husk å legge til jump block og damage block. 
 husk å legge til diamanter, gulrøtter og målflagg. 
+zombiene virker fint. men problemet er at nor jeg gj;r smo endringer i zombie koden so vil zombiene bevege seg ulogisk i forhold til koden. et eksempel vil vare o bare endre farten dens. da vil en vanlig bug skje hvor vis du er for narme zombien so vil den lope unna deg. en annen bug jeg motte po var skuddene. alle bulletsene har sin objekt, hvor en av egenskapene er deres sprite. problemet er nor jeg skal rendere bulletsene ved bruk av drawimage funskjonen i canvas, so vil ikke den tegne opp spriten til bulleten men vil forsatt eksistere og omgo med den andre elementene i spillet. en bug. vopene fungere fint no, borsett fra sprite. 
 //
 
 //check list:
@@ -236,6 +237,9 @@ viktig
 -få sprite til å funke/ legge til resten av bildene -anjayan
 -Upgrade pistol, dobbelt skudd
 -scroller backgrunnen (x-retning)-anjayan, med bakgrunn som repeterer. 
+fjerne bullets vis den går en avstand. 
+-fikse scope, kanskje jeg har løsningne
+
 
 
 
@@ -244,3 +248,12 @@ mindre viktig:
 -kollisjon på siden av hinder blocker.-anjayan //tror egentlig ikke vi trenger dette-anjayan
 - enemyies som beveger som retards, re-tards.
 
+// anajyan planen er legge til nivå 2 og nivå 3. fikse zoombienee og pistolen og skuddene. også kanksje legge feer som beveger seg etter funksjoner.
+zombiene pleier ikke ofte å følge etter deg og noen ganger stopper de vis du står ved siden av dem. justeringer av variabler må være kilden til problemet. zombiene virker delvis. hver 2 gang vi spiller på banen så virker den, men i mellom så vil løpe vekk fra deg.
+jeg gjort alle bildene så langt til transparent.
+ANNEN BUG: KAN IKKE AVFYRE FOR MANGE SKUDD OM GANGEN, ELLERS FRYSER SPILLET FORDI DEN KLARER IKKE Å REGISTRERE KOLLISJON PÅ ALLE OMRÅDER. 
+
+
+har lagt feer som følger beveger seg som sinus funksjoner eller polynomfunksjoner hvor graden er ganske høy. dette sikkert tilfredstiller Hannas sadistiske ønsker om tortur baner.  
+
+jeg tror jeg har fikset scope problemene til alle enemiesene. angri hvilket range en enemy kan bevege seg helt til må svinge. istedenfor for sjekke om x.posisjonen til alle enemiene har gått over range, så vil den sjekke noe annet. derfor vil ikke Scope virke helt på alle enemy. dette vil sikkert løse problemet til de pasifistiske selvmords zombiene. samtidig endret jeg også et par true og false kondisjonene, sånn at gir mening med scope funksjonen. jeg tenker at det selv også er en kilde til problemet.  

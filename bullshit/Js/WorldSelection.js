@@ -112,22 +112,22 @@ function loadWorld(e) {
         var currentText = textEl[j];
         currentText.parentNode.removeChild(currentText);
     }
-    /*
-    if (curretTarget.id === "world1" && playerTotalCarrotCount == 0) {
+    
+    if (curretTarget.id === "world1" /*&& playerTotalCarrotCount == 0*/) {
         enterLvl1();
 
-    } else if (curretTarget.id === "world2" && playerTotalCarrotCount == 1) {
+    } else if (curretTarget.id === "world2"/* && playerTotalCarrotCount == 1*/) {
         
-        enterLvl2();
+        enterLvl2() ;
 
 
-    } else if (curretTarget.id === "world3" && playerTotalCarrotCount == 2) {
+    } else if (curretTarget.id === "world3" /*&& playerTotalCarrotCount == 2*/) {
     
         enterLvl3();
 
     }
-    */
-    enterLvl2();
+    
+    //enterLvl3();
 
 }
 

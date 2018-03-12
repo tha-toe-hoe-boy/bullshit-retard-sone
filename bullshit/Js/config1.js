@@ -2,7 +2,7 @@
 function enterLvl1() {
 
     var backgroundimg = new Image();
-    backgroundimg.src = "./img/kordinat.png";
+    backgroundimg.src = "./img/bakgrunn1.png";
 
 
 
@@ -94,13 +94,13 @@ class blocks {
         for (var j = 0; j < BlockSet[i].antallBlokker; j++) {
 
             if (BlockSet[i].damage != 0) {
-                block[i][j] = new blocks("img/DamageBlock.png", BlockSet[i].xPos + (j * 80), BlockSet[i].yPos, 50, 10);
+                block[i][j] = new blocks("img/DamageBlock.png", BlockSet[i].xPos + (j * 80), BlockSet[i].yPos, 170, 101);
                 block[i][j].damage = BlockSet[i].damage;
             } else if (BlockSet[i].speed != 0) {
-                block[i][j] = new blocks("img/platformned.png", BlockSet[i].xPos + (j * 100), BlockSet[i].yPos, 100, 74);
+                block[i][j] = new blocks("img/platformned.png", BlockSet[i].xPos + (j * 100), BlockSet[i].yPos, 170, 34);
                 block[i][j].speed = BlockSet[i].speed;
             } else if (BlockSet[i].jump != 0) {
-                block[i][j] = new blocks("img/jumpBlock.png", BlockSet[i].xPos + (j * 100), BlockSet[i].yPos, 20, 20);
+                block[i][j] = new blocks("img/jumpBlock.png", BlockSet[i].xPos + (j * 170), BlockSet[i].yPos, 170, 108);
                 block[i][j].jump = BlockSet[i].jump;
             }
             else if (BlockSet[i].name === "i luften") {
@@ -108,7 +108,7 @@ class blocks {
                 block[i][j].speed = BlockSet[i].speed;
             }
             else {
-                block[i][j] = new blocks("img/platformned.png", BlockSet[i].xPos + (j * 100), BlockSet[i].yPos, 100, 74);
+                block[i][j] = new blocks("img/platformned.png", BlockSet[i].xPos + (j * 170), BlockSet[i].yPos, 170, 34);
 
             }
         }
@@ -137,7 +137,11 @@ class blocks {
     //
     //And the carrots
     var CarrotSet = [
-        { xPos: 400, yPos: 15 }
+       // { xPos: 1500, yPos: 145 },
+        //{ xPos: 3300, yPos: 145 },
+        //{ xPos: 4300, yPos: 145 },
+        { xPos: 5500, yPos: 120 },
+
         //{ xPos: 500, yPos: 45 }
     ]
 
@@ -145,7 +149,7 @@ class blocks {
 
 
     for (var i = 0; i < CarrotSet.length; i++) {
-        carrots[i] = new collectable("img/treasure.png", CarrotSet[i].xPos, CarrotSet[i].yPos, 10, 10)
+        carrots[i] = new collectable("img/treasure.png", CarrotSet[i].xPos, CarrotSet[i].yPos, 50, 80)
     }
     //
 
@@ -175,6 +179,7 @@ class blocks {
         enemyStartXValue[i] = new Array();
         startSpeed[i] = new Array();
         differanse[i] = new Array();
+
 
         for (var j = 0; j < EnemySet[i].antallEnemies; j++) {
             startSpeed[i][j] = false;
@@ -218,7 +223,7 @@ class blocks {
 
 
     // Placing the objective
-    var finnishLine = new collectable("img/finnishLine.png", 800, 80, 10, 10);
+    var finnishLine = new collectable("img/målflagg.png", 6800, 417.5, 100, 115);
 
 
 
@@ -305,9 +310,13 @@ class blocks {
         }
 
 
+
+
         // Wapon logic and inventory bullet count
-        if (playerGameInventoryDiamondCount == 3) {
-            bulletInventory = 5;
+        var gun = new entity("img/gun (2).png", player.xPosition + 12.5, player.yPosition + 32.5, 0, 0, "left", 45, 25);
+
+        if (playerGameInventoryDiamondCount == 1) {
+            bulletInventory = 100;
             playerGameInventoryDiamondCount = 0;
         }
 
@@ -527,7 +536,7 @@ class blocks {
                     differanse[i][j] = player.xPosition - enemies[i][j].xPosition;
 
                     if (differanse[i][j] >= 10 || differanse[i][j] <= -10) {
-                        console.log("følger ikke eter");
+                        //  console.log("følger ikke eter");
 
                         if (startSpeed[i][j] == false) {
                             enemies[i][j].zomRight += EnemySet[i].xspd
@@ -552,7 +561,7 @@ class blocks {
                             startSpeed[i][j] = true;
                         }
                     } else if (differanse[i][j] < 150 || differanse[i][j] > -150) {
-                        console.log("følger etter");
+                        //console.log("følger etter");
 
                         if (differanse[i][j] > 0) {
                             enemies[i][j].xPosition += -player.xSpd; + EnemySet[i].xspd;
@@ -622,7 +631,7 @@ class blocks {
 
 
 
-                        console.log("du har tatt vekk et liv, hvorfor?")
+                        //console.log("du har tatt vekk et liv, hvorfor?")
                     }
                 }
 
@@ -640,12 +649,13 @@ class blocks {
         //backgroundimage
         ctx.drawImage(backgroundimg, 0, 0, canvasEl.width, canvasEl.height);
 
-        //rendering the bullets
-        for (var i = 0; i < bulletList.length; i++) {
-            ctx.drawImage(bulletList[i].sprite, bulletList[i].xPosition, bulletList[i].yPosition, bulletList[i].width, bulletList[i].height);
+      //rendering the bullets
+      for (var i = 0; i < bulletList.length; i++) {
+        ctx.fillRect(bulletList[i].xPosition, bulletList[i].yPosition, bulletList[i].width, bulletList[i].height);
 
-        }
-        console.log(bulletList[i]);
+    }
+
+        //     console.log(bulletList[i]);
 
         //Rendering the Diamonds
         for (var i = 0; i < playerDiamonds.length; i++) {
@@ -673,6 +683,11 @@ class blocks {
             ctx.drawImage(carrots[i].sprite, carrots[i].xPosition, carrots[i].yPosition);
         }
 
+
+
+        // DRAW GUN
+
+        ctx.drawImage(gun.sprite, gun.xPosition, gun.yPosition);
 
 
         //Lastly rendering the player and the finnish line
@@ -744,7 +759,7 @@ class blocks {
             setTimeout(mainLoop, 1000 / 60)
         }
 
-        console.log(player.xPosition, player.yPosition);
+        //  console.log(player.xPosition, player.yPosition);
     }
 
 
